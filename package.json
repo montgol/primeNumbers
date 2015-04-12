@@ -1,0 +1,29 @@
+{
+  "name": "FireEye",
+  "version": "1.0.0",
+  "description": "Prime Numbers",
+  "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/montgol/primeNumbers.git"
+  },
+  "author": "Lynda Montgomery",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/montgol/primeNumbers/issues"
+  },
+  "homepage": "https://github.com/montgol/primeNumbers",
+  "dependencies": {
+    "redis": "^0.12.1"
+  },
+  "devDependencies": {
+    "chai": "^2.2.0",
+    "mocha": "^2.2.4"
+  }
+}
