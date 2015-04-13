@@ -12,26 +12,32 @@ client.on('error', function (err) {
 });
 
 // 1) Read in maxNum for the Prime Numbers
-// 2) Create a function to check if a number is Prime
 
-var checkIfPrime = function() {
-
+var checkIfPrime = function(number) {
+    var start = 2;
+    var isPrime;
+    while (start <= Math.sqrt(number)) {
+        if (number % start++ < 1) return false;
+    }
+    return true;
 };
 
-// 3) Create a function to get all prime numbers up to maxNum
+// 2) Create a function to get all prime numbers up to maxNum
 
 var getAllPrimes = function() {
 
 };
 
-// 4) Ask user for lower/upper bound
-// 5) Find prime numbers between bounds
-// 6) Calculate Sum of Primes
-// 7) Calculate Mean of Primes
-// 8) Repeatedly ask user for bounds
+// 3) Ask user for lower/upper bound
+// 4) Find prime numbers between bounds
+// 5) Calculate Sum of Primes
+// 6) Calculate Mean of Primes
+// 7) Repeatedly ask user for bounds
 
 var execPrimes = function() {
 
 };
 
-// 9) Remember testing
+// 8) Remember testing
+
+module.exports = {checkIfPrime:checkIfPrime, getAllPrimes:getAllPrimes}
