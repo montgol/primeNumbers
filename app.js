@@ -36,19 +36,25 @@ var getAllPrimes = function(num) {
 		}
 	}
 };
-
-// 1) Find prime numbers between bounds
-// 2) Calculate Sum of Primes
-// 3) Calculate Mean of Primes
-// 4) Repeatedly ask user for bounds
+// 1) Calculate Mean of Primes
+// 2) Repeatedly ask user for bounds
 
 var execPrimes = function() {
 	rl.question("Enter a lower bound: ", function(lb) {
 		var lower = parseInt(lb);
-		console.log('lb', lb);
 		rl.question("Enter an upper bound: ", function(ub) {
 			var upper = parseInt(ub);
-			console.log('ub', ub);
+			var subsetPrimes = [];
+			console.log('Result:');
+			client.lrange('primes', 0, -1, function(err, num) {
+				if (err) throw err;
+				num.forEach(function(reply){
+					if ((reply >= lb) && (reply <= ub)){
+						subsetPrimes.push(reply);
+					}
+				});
+				console.log("Prime numbers: [" + subsetPrimes + "]");
+			});
 		});
 	});
 };
