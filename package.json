@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/montgol/primeNumbers",
   "dependencies": {
+    "readline": "0.0.7",
     "redis": "^0.12.1"
   },
   "devDependencies": {

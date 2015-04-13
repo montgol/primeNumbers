@@ -11,7 +11,8 @@ client.on('error', function (err) {
 	console.log('Error ' + err);
 });
 
-// 1) Read in maxNum for the Prime Numbers
+var maxNum = process.argv[2];
+console.log(maxNum);
 
 var checkIfPrime = function(number) {
     var start = 2;
@@ -22,22 +23,37 @@ var checkIfPrime = function(number) {
     return true;
 };
 
-// 2) Create a function to get all prime numbers up to maxNum
-
-var getAllPrimes = function() {
-
+var getAllPrimes = function(num) {
+	var num = parseInt(num);
+	if (num > 2){
+		client.del('primes');
+		client.rpush('primes', 2);
+		// increase i by 2 since all even numbers are not prime
+		for(var i = 3; i <= num; i = i + 2) {  
+		  if(checkIfPrime(i)){
+		    client.rpush('primes', i);
+		  }
+		}
+	}
 };
 
-// 3) Ask user for lower/upper bound
-// 4) Find prime numbers between bounds
-// 5) Calculate Sum of Primes
-// 6) Calculate Mean of Primes
-// 7) Repeatedly ask user for bounds
+// 1) Find prime numbers between bounds
+// 2) Calculate Sum of Primes
+// 3) Calculate Mean of Primes
+// 4) Repeatedly ask user for bounds
 
 var execPrimes = function() {
-
+	rl.question("Enter a lower bound: ", function(lb) {
+		var lower = parseInt(lb);
+		console.log('lb', lb);
+		rl.question("Enter an upper bound: ", function(ub) {
+			var upper = parseInt(ub);
+			console.log('ub', ub);
+		});
+	});
 };
 
-// 8) Remember testing
+getAllPrimes(maxNum);
+execPrimes();
 
 module.exports = {checkIfPrime:checkIfPrime, getAllPrimes:getAllPrimes}
