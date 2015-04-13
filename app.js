@@ -12,7 +12,7 @@ client.on('error', function (err) {
 });
 
 var maxNum = process.argv[2];
-console.log(maxNum);
+var repeat = true;
 
 var checkIfPrime = function(number) {
     var start = 2;
@@ -36,8 +36,6 @@ var getAllPrimes = function(num) {
 		}
 	}
 };
-// 1) Calculate Mean of Primes
-// 2) Repeatedly ask user for bounds
 
 var execPrimes = function() {
 	rl.question("Enter a lower bound: ", function(lb) {
@@ -54,6 +52,17 @@ var execPrimes = function() {
 					}
 				});
 				console.log("Prime numbers: [" + subsetPrimes + "]");
+				var sumPrimes = subsetPrimes.reduce(function(a, b){return parseInt(a)+parseInt(b);});
+				console.log("Sum: ", sumPrimes);
+				var meanPrimes = sumPrimes / num.length;
+				console.log("Mean: ", meanPrimes);
+				rl.question("Enter new bounds? Y/N ", function(repeat) {
+					if ((repeat == "Y") || (repeat == "y")) {
+						execPrimes();
+					} else {
+						process.exit();
+					}
+				});
 			});
 		});
 	});
