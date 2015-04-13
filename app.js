@@ -46,7 +46,6 @@ var execPrimes = function() {
 			console.log('Result:');
 			client.lrange('primes', 0, -1, function(err, num) {
 				if (err) throw err;
-				console.log(num);
 				num.forEach(function(reply){
 					var reply = parseInt(reply);
 					if ((reply >= lower) && (reply <= upper)){
@@ -56,7 +55,7 @@ var execPrimes = function() {
 				console.log("Prime numbers: [" + subsetPrimes + "]");
 				var sumPrimes = subsetPrimes.reduce(function(a, b){return parseInt(a)+parseInt(b);});
 				console.log("Sum: ", sumPrimes);
-				var meanPrimes = sumPrimes / num.length;
+				var meanPrimes = sumPrimes / subsetPrimes.length;
 				console.log("Mean: ", meanPrimes);
 
 				rl.question("Enter new bounds? Y/N ", function(repeat) {
